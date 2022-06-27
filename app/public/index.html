@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button id="test-btn">TEST</button>
+    <script type="module">
+        import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+
+        const testBtn = document.querySelector('#test-btn')
+        const socket = io({
+            transports: [ "websocket" ]
+        });
+
+        socket.on('server', () => {
+            console.log('server')
+        })
+
+        testBtn.addEventListener('click', (event) => {
+            socket.emit('test')
+        })
+    </script>
+</body>
+</html>
